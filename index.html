@@ -18,28 +18,16 @@
       overflow: hidden;
     }
 
-    .logo-wrapper {
-      position: relative;
-    }
-
     .animated-logo {
       width: 150vw;
       max-width: 1200px;
       opacity: 0;
       animation:
-        fadeIn 2s ease-out forwards,
-        breathe 6s ease-in-out infinite;
-    }
-
-    .flicker-loop {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 150vw;
-      max-width: 1200px;
-      height: auto;
-      animation: flicker 0.4s steps(2, start) 1.5s infinite;
-      pointer-events: none;
+        fadeIn 2.5s ease-out forwards,
+        breathe 6s ease-in-out infinite,
+        flicker 1.5s steps(2, start) infinite;
+      animation-delay: 0s, 0s, 2.5s;
+      animation-duration: 2.5s, 6s, 6s;
     }
 
     @keyframes fadeIn {
@@ -53,23 +41,16 @@
     }
 
     @keyframes flicker {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(0.4); }
     }
   </style>
 </head>
 <body>
-  <div class="logo-wrapper">
-    <img
-      src="https://11th-exhibition.github.io/IntroVisual-Repo/images/yunlogobanner.png"
-      alt="NTV11 LOGO"
-      class="animated-logo"
-    />
-    <img
-      src="https://11th-exhibition.github.io/IntroVisual-Repo/images/yunlogobanner.png"
-      alt=""
-      class="flicker-loop"
-    />
-  </div>
+  <img
+    src="https://11th-exhibition.github.io/IntroVisual-Repo/images/yunlogobanner.png"
+    alt="NTV11 LOGO"
+    class="animated-logo"
+  />
 </body>
 </html>
