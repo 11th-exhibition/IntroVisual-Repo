@@ -4,100 +4,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NTV11 展演級 LOGO 動畫頁</title>
+  <title>NTV11 Intro Visual</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      background-color: transparent;
       height: 100vh;
       width: 100vw;
-      overflow: hidden;
+      background: transparent;
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
     }
 
-    .animated-image {
-      width: 150vw;
-      max-width: 1400px;
-      height: auto;
+    .animated-logo {
+      width: 90vw;
+      max-width: 1200px;
       opacity: 0;
-      transform: translateY(100px) scale(1.4);
       animation:
-        entrance 2s ease-out forwards,
-        megaMorph 5s ease-in-out infinite,
-        flickerFloat 6s ease-in-out infinite;
-      transition: transform 0.4s ease-out;
-      will-change: transform, filter;
-      cursor: default;
+        fadeIn 2s ease-out forwards,
+        breathe 6s ease-in-out infinite,
+        flicker 0.4s steps(2, start) 4;
     }
 
-    @keyframes entrance {
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
-    @keyframes megaMorph {
-      0% {
-        transform: scale(1.0, 1.0) rotate(0deg);
-        filter: hue-rotate(0deg) brightness(1);
-      }
-      20% {
-        transform: scale(1.03, 0.97) rotate(0.3deg);
-        filter: hue-rotate(20deg) brightness(1.1);
-      }
-      40% {
-        transform: scale(0.97, 1.03) rotate(-0.3deg);
-        filter: hue-rotate(-20deg) brightness(0.95);
-      }
-      60% {
-        transform: scale(1.04, 0.96) rotate(0.2deg);
-        filter: hue-rotate(10deg) brightness(1.05);
-      }
-      80% {
-        transform: scale(0.96, 1.04) rotate(-0.2deg);
-        filter: hue-rotate(-10deg) brightness(0.98);
-      }
-      100% {
-        transform: scale(1.0, 1.0) rotate(0deg);
-        filter: hue-rotate(0deg) brightness(1);
-      }
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
     }
 
-    @keyframes flickerFloat {
-      0%, 100% {
-        transform: translate(0, 0);
-      }
-      10% {
-        transform: translate(-3px, 2px);
-      }
-      20% {
-        transform: translate(2px, -2px);
-      }
-      30% {
-        transform: translate(-2px, 3px);
-      }
-      40% {
-        transform: translate(3px, -1px);
-      }
-      50% {
-        transform: translate(-1px, 2px);
-      }
-      60% {
-        transform: translate(1px, -3px);
-      }
-      70% {
-        transform: translate(-3px, 1px);
-      }
-      80% {
-        transform: translate(2px, -2px);
-      }
-      90% {
-        transform: translate(-1px, 1px);
-      }
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
   </style>
 </head>
@@ -105,7 +48,7 @@
   <img
     src="https://11th-exhibition.github.io/IntroVisual-Repo/images/yunlogobanner.png"
     alt="NTV11 LOGO"
-    class="animated-image"
+    class="animated-logo"
   />
 </body>
 </html>
