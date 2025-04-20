@@ -23,16 +23,21 @@
       max-width: 1200px;
       opacity: 0;
       animation:
-        fadeIn 2.5s ease-out forwards,
+        fadeInWithFlicker 2.5s steps(6, end) forwards,
         breathe 6s ease-in-out infinite,
-        flicker 1.5s steps(2, start) infinite;
+        flickerCycle 1.5s steps(2, start) infinite;
       animation-delay: 0s, 0s, 2.5s;
       animation-duration: 2.5s, 6s, 6s;
     }
 
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: scale(0.9); }
-      100% { opacity: 1; transform: scale(1); }
+    @keyframes fadeInWithFlicker {
+      0% { opacity: 0; filter: brightness(0.5); }
+      10% { opacity: 0.3; filter: brightness(1); }
+      20% { opacity: 0.6; filter: brightness(0.6); }
+      30% { opacity: 0.9; filter: brightness(1.2); }
+      50% { opacity: 1; filter: brightness(0.8); }
+      70% { opacity: 1; filter: brightness(1); }
+      100% { opacity: 1; filter: brightness(1); }
     }
 
     @keyframes breathe {
@@ -40,7 +45,7 @@
       50% { transform: scale(1.08); }
     }
 
-    @keyframes flicker {
+    @keyframes flickerCycle {
       0%, 100% { filter: brightness(1); }
       50% { filter: brightness(0.4); }
     }
