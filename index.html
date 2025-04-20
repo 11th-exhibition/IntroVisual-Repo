@@ -12,24 +12,41 @@
       height: 100vh;
       width: 100vw;
       background: transparent;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       overflow: hidden;
     }
 
-    .animated-logo {
-      width: 90vw;
-      max-width: 1200px;
-      opacity: 0;
-      animation:
-        fadeIn 2s ease-out forwards,
-        breathe 6s ease-in-out infinite,
-        flicker 0.4s steps(2, start) 4;
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    @keyframes fadeIn {
+    .logo-wrapper {
+      position: relative;
+      width: 90vw;
+      max-width: 1200px;
+    }
+
+    .animated-logo {
+      width: 100%;
+      opacity: 0;
+      animation:
+        fadeInFlicker 2.5s ease-out forwards,
+        breathe 6s ease-in-out infinite,
+        flickerRepeat 1.5s steps(2, start) infinite;
+      animation-delay: 0s, 0s, 2.5s;
+      animation-iteration-count: 1, infinite, infinite;
+      animation-timing-function: ease-out, ease-in-out, step-start;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes fadeInFlicker {
       0% { opacity: 0; transform: scale(0.9); }
+      20% { opacity: 0.5; }
+      40% { opacity: 1; }
+      50% { opacity: 0.6; }
+      60% { opacity: 1; }
+      70% { opacity: 0.85; }
       100% { opacity: 1; transform: scale(1); }
     }
 
@@ -38,17 +55,62 @@
       50% { transform: scale(1.08); }
     }
 
-    @keyframes flicker {
+    @keyframes flickerRepeat {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.4; }
+    }
+
+    .shine {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+      transform: skewX(-20deg);
+      animation: shineMove 4s ease-in-out infinite;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    @keyframes shineMove {
+      0% { left: -75%; }
+      50% { left: 125%; }
+      100% { left: 125%; }
+    }
+
+    .particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+        radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 3px 3px, 6px 6px;
+      animation: particlesMove 60s linear infinite;
+    }
+
+    @keyframes particlesMove {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 1000px 1000px, -1000px -1000px; }
     }
   </style>
 </head>
 <body>
-  <img
-    src="https://11th-exhibition.github.io/IntroVisual-Repo/images/yunlogobanner.png"
-    alt="NTV11 LOGO"
-    class="animated-logo"
-  />
+  <div class="particles"></div>
+  <div class="logo-wrapper">
+    <img
+      src="https://11th-exhibition.github.io/IntroVisual-Repo/images/yunlogobanner.png"
+      alt="NTV11 LOGO"
+      class="animated-logo"
+      style="animation-delay: 0s, 0s, 2.5s; animation-duration: 2.5s, 6s, 6s;"
+    />
+    <div class="shine"></div>
+  </div>
 </body>
 </html>
